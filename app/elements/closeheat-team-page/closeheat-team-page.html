@@ -1,0 +1,138 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="closeheat-team-page">
+
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .avatar {
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        --iron-image-width: 200px;
+        --iron-image-height: 200px;
+      }
+
+      .avatar::shadow img{
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+
+      .team-members {
+        margin-top: 48px;
+      }
+
+      .person {
+        margin-bottom: 50px;
+        max-width: 400px;
+      }
+
+      .person:hover .avatar{
+        filter: none;
+        -webkit-filter: grayscale(0%);
+      }
+
+      .person h2 {
+        font-size: 25px;
+        padding-top: 20px;
+        margin: 0;
+        line-height: 26px;
+      }
+
+      .person .team-position {
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+       .person .team-description {
+        padding-top: 20px;
+        font-weight: 300;
+        margin: 0;
+      }
+
+      @media all and (min-width: 601px) {
+        .team-members .col {
+          width: 50%;
+        }
+      }
+
+    </style>
+
+    <template>
+      <div class="hero hero-other">
+        <div class="container-wide">
+          <div class="row">
+            <div class="col">
+              <h1>Our Team</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-wide">
+        <div class="row team-members layout horizontal wrap is-updated-below-600">
+            <template is="dom-repeat" items="[[persons]]" as="person">
+              <div class="col">
+                <div class="person">
+                  <iron-image src="[[baseurl]]/images/team/[[person.avatarImage]]" alt="[[person.name]]" class="avatar"></iron-image>
+                  <h2>[[person.name]]</h2>
+                  <div class="team-position">[[person.position]]</div>
+                  <p class="team-description">[[person.description]]</p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'closeheat-team-page',
+
+            properties: {
+              baseurl: {
+                type: String,
+                value: ''
+              },
+
+              persons: {
+                type: Array,
+                value: [
+                  {
+                    "name": "Domas Bitvinskas",
+                    "position": "CEO & Co-Founder",
+                    "description": "Domas leads the company's vision and growth. The most important thing to him is to be focused on important things. But he's not scared to get his hands dirty either. He's gonna design and code it all just to make the experience for our clients beautiful. Constantly pushes his fears forward by doing all kinds of extreme sports - from skydiving to snowboarding.",
+                    "avatarImage": "domas.jpg"
+                  }, 
+                  {
+                    "name": "Justas Palumickas",
+                    "position": "CTO & Co-Founder",
+                    "description": "Justas is the one who brings the teams concepts, designs and technology together. Having an extensive experience in various IT companies before closeheat, he is always the last man standing in technology questions.",
+                    "avatarImage": "justas.jpg"
+                  },
+                  {
+                    "name": "Benas Bitvinskas",
+                    "position": "CDO & Co-Founder",
+                    "description": "Benas drives the company's design strategy and pushing the boundaries of user-centered design forward. Willing to stand on his head if this makes for a better user experience. Also digs brand design and does professional design for more than a year. He codes as well - a killer thing to do for a designer.",
+                    "avatarImage": "benas.jpg"
+                  },
+                  {
+                    "name": "Vaida Lekavičiūtė",
+                    "position": "Head of Cat Relations",
+                    "description": "Vaida leads company's social media efforts and relations. She is the one who sets the guidelines for our content's quality and forces us find better ways to express ourselves. Vaida brings a wealth of experience in Marketing, PR and Communications.",
+                    "avatarImage": "vaida.jpg"
+                  }
+                ]
+              }
+            }
+        });
+
+    </script>
+
+</dom-module>

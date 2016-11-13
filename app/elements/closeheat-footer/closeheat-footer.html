@@ -1,0 +1,254 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../styles/shared-styles.html">
+
+<dom-module id="closeheat-footer">
+
+    <style include="shared-styles">
+      :host {
+        padding: 100px 0;
+        background-color: #23334B;
+        color: #fff;
+        display: block;
+
+        --paper-input-container-color: #9e9e9e;
+        --paper-input-container-focus-color: #EF5350;
+        --paper-input-container-input-color: #fff;
+        --paper-input-container-label: {
+          font-size: 1rem;
+        };
+      }
+      paper-input {
+        --paper-input-container-label: {
+          font-size: 1rem;
+          top: 0.8rem;
+        };
+        --paper-input-container-label-floating: {
+          top: 0.3rem;
+        };
+        --paper-input-container-input: {
+          height: 3rem;
+        };
+      }
+
+      paper-input,
+      paper-textarea {
+        margin-top: 1rem;
+      }
+
+      .row {
+        margin-bottom: 20px;
+      }
+      .footer-links-container {
+        margin-bottom: 45px;
+      }
+      .footer-links-container .col {
+        width: 50%;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li a {
+        color: #fff;
+        font-size: 11px;
+        letter-spacing: .5px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+      .footer-location {
+        font-size: 12px;
+        padding-top: 22px;
+        font-style: normal;
+      }
+      .footer-drop-title {
+        font-size: 20px;
+        line-height: 2em;
+        font-weight: 300;
+        padding-bottom: 10px;
+      }
+
+      .footer-send {
+        margin: 25px 0 0;
+        font-size: 12px;
+        padding: 3px 30px;
+        line-height: 33px;
+        letter-spacing: .5px;
+        font-weight: 500;
+        border: 2px solid #F62D51;
+        color: #F62D51;
+        border-radius: 90px;
+        text-transform: uppercase;
+        background-color: rgba(255, 255, 255, 0);
+      }
+      .footer-send:hover {
+        background-color: #F62D51;
+        color: white;
+      }
+
+
+      @media all and (min-width: 768px) and (max-width: 1024px){
+        .footer-links-container .col {
+            width: 45%;
+        }
+      }
+      @media all and (min-width: 1025px){
+        .footer-links-container .col {
+            width: 33.33333%;
+        }
+      }
+      @media all and (max-width: 767px) {
+        .drop-us-a-line {
+          margin-top: 24px;
+        }
+      }
+    </style>
+
+    <template>
+
+        <!--
+          Send message ajax
+        -->
+        <iron-ajax id="ajax"
+          url="https://formspree.io/domas.bitvinskas@me.com"
+          method="POST"
+          content-type="application/x-www-form-urlencoded"
+          body="{{data}}"
+          on-error="_ajaxError"
+          on-response="_ajaxResponse"></iron-ajax>
+
+        <footer class="container-wide">
+          <div class="row">
+            <div class="col layout horizontal is-updated-below-767">
+              <div class="flex">
+                <div class="footer-links-container row layout horizontal">
+                  <div class="col">
+                    <ul>
+                      <li>
+                        <a href="{{baseurl}}/#features">Features</a>
+                      </li>
+                      <li>
+                        <a href="{{baseurl}}/team">Our Team</a>
+                      </li>
+                      <li>
+                        <a href="{{baseurl}}/blog">Our Blog</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)" on-tap="_handleCloseheatSignupClick">Join Closed Beta</a>
+                      </li>
+                      <li>
+                        <a href="https://twitter.com/closeheatapp" target="_blank">Twitter</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col">
+                    <address class="footer-location">Kungsgatan 11, Stockholm<br>03218<br>Sweden</address>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <a href="https://mixpanel.com/f/partner" rel="nofollow">
+                      <img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="flex drop-us-a-line">
+                  <div class="row">
+                    <div class="col">
+                      <div class="footer-drop-title">Drop us a line</div>
+                    </div>
+                  </div>
+
+                  <form is="iron-form" id="form">
+                    <div class="row">
+                      <div class="col">
+                        <paper-input label="Your email address"
+                          required error-message="needs some text!"
+                          value="{{data.email}}"></paper-input>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <paper-textarea label="Your message" rows="3"
+                          required error-message="needs some text!"
+                          value="{{data.message}}"></paper-textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <paper-button class="footer-send" on-tap="_sendMessage">Send</paper-button>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div id="thanksNote" hidden>
+                    <p><b>Thank you for everything!</b>
+                    </p>
+                    <p>We'll contact you as soon as we find this.
+                      <br><i>(usually in a few hours)</i>
+                    </p>
+                    <p><a href="https://app.closeheat.com/users/sign_in" class="btn">Create a Website in the Meantime</a>
+                    </p>
+                  </div>
+
+                  <div id="errorNote" hidden>
+                    <p><b>There were errors sending your message.</b>
+                    </p>
+                    <p>Feel free to email us directly on <a href="mailto:support@closeheat.com">support@closeheat.com</a>.
+                      <br>We'll get back to you a soon as we find it.
+                      <br><i>(usually in a few hours)</i>
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'closeheat-footer',
+
+            properties: {
+              baseurl: {
+                type: String,
+                value: ''
+              },
+
+              data: {
+                type: Object,
+                value: function () {
+                  return {};
+                }
+              }
+            },
+
+            _handleCloseheatSignupClick: function () {
+              this.fire("closeheat-signup-click");
+            },
+
+            _sendMessage: function() {
+              if(this.$.form.validate()) {
+                this.$.ajax.generateRequest();
+              }
+            },
+
+            _ajaxError: function(e) {
+              console.log("Error: ", e);
+              this.toggleAttribute('hidden', false, this.$.errorNote);
+            },
+
+            _ajaxResponse: function(e) {
+              this.toggleAttribute('hidden', false, this.$.thanksNote);
+              this.set("data.email", "");
+              this.set("data.message", "");
+            }
+        });
+
+    </script>
+
+</dom-module>

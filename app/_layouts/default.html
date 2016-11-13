@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+{% include head.html %}
+
+<body unresolved>
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
+    {% include header.html %}
+
+    <main>
+      {{ content }}
+    </header>
+
+    {% include footer.html %}
+
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
+    <signup-dialog id="signupDialog"></signup-dialog>
+
+  </template>
+
+  <!-- MathJax -->
+  <script type="text/javascript"
+          src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+  <!-- build:js scripts/app.js -->
+  <script src="{{ site.baseurl }}/scripts/app.js"></script>
+  <!-- endbuild-->
+
+  {% include analytics.html %}
+
+  <script type="text/javascript" src="{{ site.baseurl }}/scripts/lightbox/js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="{{ site.baseurl }}/scripts/lightbox/js/lightbox.js"></script>
+
+</body>
+
+</html>
