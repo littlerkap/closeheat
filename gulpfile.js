@@ -391,7 +391,7 @@ gulp.task('deploy-gh-pages', function() {
     // Check if running task from Travis CI, if so run using GH_TOKEN
     // otherwise run using ghPages defaults.
     .pipe($.if(process.env.TRAVIS === 'true', $.ghPages({
-      remoteUrl: 'https://github.com/littlerkap/littlerkap.github.io.git',
+      remoteUrl: 'https://github.com/littlerkap/closeheat.git',
       silent: true,
       branch: 'gh-pages'
     }), $.ghPages()));
