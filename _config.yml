@@ -13,7 +13,7 @@ email: support@closeheat.com
 baseurl: "/closeheat/"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
                             # Currently `gulp serve:dist` does not work with a baseurl specified. For this purpose,
                             # temporarily comment out this parameter
-url: "https://littlerkap.github.io"  # Base hostname & protocol for your site
+url: "http://littlerkap.github.io"  # Base hostname & protocol for your site
 
 twitter_username: closeheatapp
 github_username:  closeheatapp
