@@ -1,9 +1,9 @@
 ---
-layout: post
 title: About the Jekyll Polymer Theme
+layout: post
 tags:
-    - jekyll
-    - design
+- jekyll
+- design
 ---
 
 *Taken from the readme file of the project's [Github repository](https://github.com/jtebert/jekyll-polymer))*

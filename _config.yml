@@ -2,26 +2,26 @@ source: app
 destination: app/_site
 
 # Site settings
-title: closeheat - Website Development in the Cloud
+title: edomus.io
 description: > # this means to ignore newlines until "baseurl:"
-  closeheat - Edit Landing Page Code In-browser
+  edomus.io
 
-author: closeheatapp
-author_website: https://app.closeheat.com
-email: support@closeheat.com
+author: edomus.io
+author_website: https://edomus.io/
+email: andrew.bernstein00@gmail.com
 
-baseurl: "/closeheat"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
+#baseurl: "/edomus"  # Subpath of your site, e.g. /blog. For deploying to github pages, this should match your repo name
                             # Currently `gulp serve:dist` does not work with a baseurl specified. For this purpose,
                             # temporarily comment out this parameter
 url: "http://littlerkap.github.io"  # Base hostname & protocol for your site
 
-twitter_username: closeheatapp
-github_username:  closeheatapp
-disqus_shortname: juliaebert
-google_analytics: UA-54476418-1
+#twitter_username: edomus
+#github_username:  edomus
+#disqus_shortname: juliaebert
+#google_analytics: UA-54476418-1
 
 # Pagination
-paginate: 2
+paginate: 4
 paginate_path: "/blog/page:num"
 excerpt_separator: <!--more-->
 
