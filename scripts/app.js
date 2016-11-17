@@ -69,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer.Base.transform('scale(' + scaleMiddle + ') translateZ(0)', appName);
   });
 
-  window.addEventListener('closeheat-signup-click', function(e) {
+  window.addEventListener('edomus-signup-click', function(e) {
     app.$.signupDialog.open();
   });
 

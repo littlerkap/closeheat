@@ -1,0 +1,228 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="edomus-header">
+
+    <style include="shared-styles">
+      :host {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 50px 0 0;
+        color: #fff;
+        display: block;
+        height: 190px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 1;
+      }
+      .logo {
+        display: inline-block;
+      }
+      .logo iron-image {
+        height: 30px;
+        width: 120px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+          -webkit-transition: background-color 0.3s;
+          -moz-transition: background-color 0.3s;
+          -o-transition: background-color 0.3s;
+          -ms-transition: background-color 0.3s;
+          transition: background-color 0.3s;
+          text-transform: uppercase;
+      }
+      ul a {
+        font-size: 11px;
+        letter-spacing: .5px;
+        font-weight: 500;
+        color: #fff;
+        display: block;
+        margin: 0 15px;
+        line-height: 30px;
+      }
+      .btn {
+        padding: 0 15px;
+        background-color: #fff;
+        border: 2px solid #fff;
+        color: #F62D51;
+        -webkit-border-radius: 90px;
+        -moz-border-radius: 90px;
+        border-radius: 90px;
+        line-height: 33px;
+      }
+      .btn:hover {
+        color: #fff;
+      }
+
+      @media all and (max-width: 767px) {
+        .menu-container.layout.horizontal-reverse {
+          display: block;
+        }
+
+        .logo {
+          margin-bottom: 20px;
+        }
+        ul a {
+          line-height: 56px;
+        }
+      }
+
+      @media all and (max-width: 480px) {
+        li {
+          margin: 4px 0;
+        }
+        ul a {
+          margin: 0 10px;
+        }
+      }
+
+    </style>
+
+    <template>
+        <header>
+          <nav>
+              <div class="container-wide">
+                <div class="row layout horizontal center is-updated-below-767">
+                  <div class="col">
+                    <a href="[[baseurl]]/" class="logo">
+                      <iron-image src="[[baseurl]]/images/logo.png" sizing="cover"></iron-image>
+                    </a>
+                  </div>
+                  <div class="col flex layout horizontal-reverse menu-container">
+                    <ul class="layout horizontal wrap center-center">
+                      <li>
+                        <a href="[[baseurl]]/#features">Features</a>
+                      </li>
+                      <li>
+                        <a href="[[baseurl]]/#faqs">Faq</a>
+                      </li>
+                      <li>
+                        <a href="[[baseurl]]/team">Our Team</a>
+                      </li>
+                      <li>
+                        <a href="[[baseurl]]/blog">Our Blog</a>
+                      </li>
+                      <li>
+                        <a>
+                          <paper-button class="btn" raised on-tap="_handleSignupClick">Join Closed Beta</paper-button>
+                        </a>
+                      </li>
+                    </ul>
+                    <!--
+                      <a href="{{baseurl}}/archive"><iron-icon icon="history"></iron-icon><span>Archive</span></a>
+                      <a data-route="contact" href="{{baseurl}}/feed.xml"><iron-icon icon="fa:rss"></iron-icon><span>RSS Feed</span></a>
+                    -->
+                  </div>
+                </div>
+              </div>
+          </nav>
+        </header>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'edomus-header',
+
+            properties: {
+              baseurl: {
+                type: String,
+                value: ''
+              }
+            },
+
+            _handleSignupClick: function () {
+              this.fire("edomus-signup-click");
+            }
+        });
+
+    </script>
+
+</dom-module>
+
+<dom-module id="signup-dialog">
+
+    <style include="shared-styles">
+      :host {
+        --paper-input-container-color: #d1d1d1;
+        --paper-input-container-label: {
+          font-size: 1rem;
+        };
+        --paper-input-container-input: {
+          color: #424242;
+        };
+        --paper-input-container-underline: {
+          background: #9e9e9e;
+        };
+        --paper-input-container: {
+          padding: 0;
+          margin-bottom: 15px;
+        };
+      }
+
+      paper-dialog {
+        color: #424242;
+      }
+
+      .signup-form-container {
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 20px 0;
+        text-align: left;
+      }
+
+      paper-input::shadow .input-content {
+        height: 3rem;
+      }
+    </style>
+
+    <template>
+      <paper-dialog id="dialog" with-backdrop class="signup-modal">
+        <div class="signup-modal-content">
+          <div class="signup-modal-close text-right">
+            <paper-icon-button icon="icons:close" dialog-dismiss></paper-icon-button>
+          </div>
+          <div class="signup-modal-title">We're in Invite-only Beta</div>
+          <p class="signup-modal-description">Enter your email below and we'll give you heads up when we open for more people.</p>
+          <div class="signup-form-container">
+            <form id="form" action="#" method="post" target="_blank">
+              <paper-input label="Your Best Email" no-label-float name="EMAIL"></paper-input>
+              <paper-input label="Your Name" no-label-float name="FNAME"></paper-input>
+              <div class="text-center">
+                <paper-button class="btn btn-large sign-up-btn" raised on-tap="_submitForm">Get Invited</paper-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </paper-dialog>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'signup-dialog',
+
+            open: function() {
+              this.$.dialog.open();
+            },
+
+            _submitForm: function() {
+              //this.$.form.submit();
+              console.warn("Do nothing from this form");
+            }
+
+
+        });
+
+    </script>
+
+</dom-module>

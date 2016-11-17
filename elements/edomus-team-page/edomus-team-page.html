@@ -1,0 +1,125 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="edomus-team-page">
+
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .avatar {
+        --iron-image-width: 200px;
+        --iron-image-height: 200px;
+      }
+
+      .avatar::shadow img{
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+
+      .team-members {
+        margin-top: 48px;
+      }
+
+      .person {
+        margin-bottom: 50px;
+        max-width: 400px;
+      }
+
+      .person h2 {
+        font-size: 25px;
+        padding-top: 20px;
+        margin: 0;
+        line-height: 26px;
+      }
+
+      .person .team-position {
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+       .person .team-description {
+        padding-top: 20px;
+        font-weight: 300;
+        margin: 0;
+      }
+
+      @media all and (min-width: 601px) {
+        .team-members .col {
+          width: 50%;
+        }
+      }
+
+    </style>
+
+    <template>
+      <div class="hero hero-other">
+        <div class="container-wide">
+          <div class="row">
+            <div class="col">
+              <h1>Our Team</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-wide">
+        <div class="row team-members layout horizontal wrap is-updated-below-600">
+            <template is="dom-repeat" items="[[persons]]" as="person">
+              <div class="col">
+                <div class="person">
+                  <iron-image src="[[baseurl]]/images/team/[[person.avatarImage]]" alt="[[person.name]]" class="avatar"></iron-image>
+                  <h2>[[person.name]]</h2>
+                  <div class="team-position">[[person.position]]</div>
+                  <p class="team-description">[[person.description]]</p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'edomus-team-page',
+
+            properties: {
+              baseurl: {
+                type: String,
+                value: ''
+              },
+
+              persons: {
+                type: Array,
+                value: [
+                  {
+                    "name": "Andrew Bernstein",
+                    "position": "Co-Founder",
+                    "description": "Technologist and Entrepreneur featured in articles on over 20 different publications including CNBC, NBC and ITWorld. As Project Manager at CB Title Group, Andrew managed tech-based projects from concept to launch. Andrew is also the CTO of the Demski Group.",
+                    "avatarImage": "domas.jpg"
+                  },
+                  {
+                    "name": "Dan Shlufman",
+                    "position": "Co-Founder and Subject Matter Expert",
+                    "description": "Managing director at Classic Mortgage LLC, a mortgage banker in NY, NJ and CT. Originates mortgage loans and oversees production of other loan officers. Dan has over 25 years of experience in the real estate industry, and is a graduate of NYU law school. Dan has created two paid CLE course online which has been completed by 3439 lawyers.",
+                    "avatarImage": "justas.jpg"
+                  },
+                  {
+                    "name": "Cliff Bernstein",
+                    "position": "Co-Founder",
+                    "description": "Licensed attorney and President of CB Title Group LLC. Cliff has 25 years of experience with Title insurance. Cliff has been the President of CB Title Group for 16 of his years. Cliff is also a licensed real estate broker in the state of NY.",
+                    "avatarImage": "benas.jpg"
+                  }
+                ]
+              }
+            }
+        });
+
+    </script>
+
+</dom-module>
