@@ -1,5 +1,6 @@
 _site
 dist
+public
 bower_components
 node_modules
 .idea

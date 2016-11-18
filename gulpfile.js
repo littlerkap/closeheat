@@ -62,6 +62,10 @@ var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
 };
 
+var publicFolder = function(subpath) {
+  return !subpath ? 'public' : path.join('public', subpath);
+};
+
 var styleTask = function(stylesPath, srcs) {
   return gulp.src(srcs.map(function(src) {
       return path.join('app', stylesPath, src);
@@ -396,6 +400,20 @@ gulp.task('deploy-gh-pages', function() {
       silent: true,
       branch: 'gh-pages'
     }), $.ghPages()));
+});
+
+// Build then copy dist folder to public directory
+gulp.task('build-copy-dist-to-public', function(cb) {
+  runSequence(
+    'default',
+    'copy-dist-to-public',
+    cb);
+});
+
+// Copy dist folder to public directory
+gulp.task('copy-dist-to-public', function() {
+  return gulp.src(dist('**/*'))
+    .pipe(gulp.dest(publicFolder()));
 });
 
 // Load tasks for web-component-tester

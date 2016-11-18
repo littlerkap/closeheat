@@ -14,6 +14,7 @@ baseurl: "/edomus"  # Subpath of your site, e.g. /blog. For deploying to github 
                             # Currently `gulp serve:dist` does not work with a baseurl specified. For this purpose,
                             # temporarily comment out this parameter
 url: "http://littlerkap.github.io"  # Base hostname & protocol for your site
+#url: "https://edomus-fcddb.firebaseapp.com" #For firebaseapp hosting
 
 #twitter_username: edomus
 #github_username:  edomus
