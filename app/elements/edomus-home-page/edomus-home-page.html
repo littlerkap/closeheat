@@ -7,7 +7,8 @@
 <link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
-<link rel="import" href="../../bower_components/paper-collapse-item/paper-collapse-item.html">
+<link rel="import" href="../../bower_components/expanded-card/expanded-card.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <dom-module id="edomus-home-page">
 
@@ -16,20 +17,30 @@
         display: block;
 
         --iron-icon-fill-color: #4481c0;
+      }
 
-        --paper-collapse-item-header: {
-          font-weight: 600;
-          padding: 0 20px;
-          color: #424242;
-          background-color: #f7f7f7;
-          cursor: default;
-        };
+      .collapse-item {
+        margin-bottom: 12px;
+      }
 
-        --paper-collapse-item-content: {
-          border: 1px solid #f7f7f7;
-          padding: 15px;
-          color: #424242;
-        };
+      .collapse-item-header {
+        font-weight: 600;
+        padding: 16px 40px 16px 16px;
+        color: #424242;
+        background-color: #f7f7f7;
+        cursor: default;
+        position: relative;
+      }
+
+      .collapse-item-content {
+        padding: 16px 0;
+        color: #424242;
+      }
+
+      expanded-card::shadow paper-icon-button {
+        position: absolute;
+        top: 7px;
+        right: 0;
       }
 
       iron-image {
@@ -228,14 +239,6 @@
         margin-bottom: 48px;
       }
 
-      paper-collapse-item::shadow paper-item{
-        padding: 0;
-      }
-
-      paper-collapse-item::shadow paper-item:focus:before {
-        background: transparent;
-      }
-
       @media all and (min-width: 994px) {
         .how-step-right {
           margin-left: 8.33333%;
@@ -368,8 +371,14 @@
       <div class="container-wide">
         <div class="faq-section" id="faqs">
           <div class="faq-title text-center">FAQs</div>
+
           <template is="dom-repeat" items="[[faqs]]" as="faq">
-            <paper-collapse-item header="[[faq.question]]">[[faq.answer]]</paper-collapse-item>
+            <paper-material class="collapse-item">
+                <div class="collapse-item-header">[[faq.question]]</div>
+                <expanded-card>
+                    <div class="collapse-item-content">[[faq.answer]]</div>
+                </expanded-card>
+            </paper-material>
           </template>
         </div>
       </div>

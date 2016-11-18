@@ -19,6 +19,6 @@
     "iron-elements": "polymerelements/iron-elements#^1.0.8",
     "paper-elements": "polymerelements/paper-elements#^1.0.7",
     "simple-jekyll-search": "^1.1.1",
-    "paper-collapse-item": "^1.1.3"
+    "expanded-card": "^0.1.6"
   }
 }
