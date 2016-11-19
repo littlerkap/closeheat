@@ -12,3 +12,4 @@ CNAME
 /.tmp
 npm-debug.log
 /excluded-posts
+.DS_Store
